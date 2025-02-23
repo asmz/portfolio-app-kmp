@@ -10,7 +10,13 @@ import SwiftUI
 
 struct ProfileView: View {
     var body: some View {
-        Text("This is ProfileView")
+        VStack {
+            ScrollView {
+                Nameplate()
+                AccountList()
+            }
+        }
+        .background(Image(.beer))
     }
 }
 

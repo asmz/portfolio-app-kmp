@@ -6,8 +6,8 @@
 //  Copyright © 2025 orgName. All rights reserved.
 //
 
-import SwiftUI
 import Shared
+import SwiftUI
 
 struct BaseTabView: View {
     @State var selection: TabType = .profile
