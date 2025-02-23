@@ -17,6 +17,8 @@ import androidx.compose.material.icons.automirrored.filled.OpenInNew
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.clipToBounds
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
@@ -37,10 +39,11 @@ fun AccountItem(name: String) {
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween,
         modifier = Modifier
-            .clickable(onClick = onClick)
             .background(BlurGrayColor, shape = RoundedCornerShape(15.dp))
+            .clip(RoundedCornerShape(15.dp))
             .fillMaxWidth()
             .height(52.dp)
+            .clickable(onClick = onClick)
             .padding(horizontal = 16.dp),
     ) {
         Row(
