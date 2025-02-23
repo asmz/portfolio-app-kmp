@@ -1,0 +1,77 @@
+package beer.asmz.portfolio.kmp.ui.profile.view
+
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Surface
+import androidx.compose.material.Text
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.OpenInNew
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import beer.asmz.portfolio.kmp.R
+import beer.asmz.portfolio.kmp.constant.BlurGrayColor
+import beer.asmz.portfolio.kmp.constant.SubTextColor
+import beer.asmz.portfolio.kmp.constant.TextColor
+import beer.asmz.portfolio.kmp.ui.AppTheme
+
+@Composable
+fun AccountItem(name: String) {
+    val onClick: () -> Unit = {
+        println("onClick!!!!!!!!!1 $name")
+    }
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.SpaceBetween,
+        modifier = Modifier
+            .clickable(onClick = onClick)
+            .background(BlurGrayColor, shape = RoundedCornerShape(15.dp))
+            .fillMaxWidth()
+            .height(52.dp)
+            .padding(horizontal = 16.dp),
+    ) {
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(16.dp)
+        ) {
+            Image(
+                painter = painterResource(R.drawable.twitter),
+                contentDescription = name,
+                contentScale = ContentScale.Fit,
+                modifier = Modifier
+                    .size(32.dp)
+            )
+            Text(name, color = TextColor)
+        }
+        Row(
+            horizontalArrangement = Arrangement.End
+        ) {
+            Image(
+                imageVector = Icons.AutoMirrored.Default.OpenInNew,
+                contentDescription = "link",
+                colorFilter = ColorFilter.tint(SubTextColor)
+            )
+        }
+    }
+}
+
+@Preview
+@Composable
+fun AccountItemPreview() {
+    AppTheme {
+        AccountItem("twitter")
+    }
+}

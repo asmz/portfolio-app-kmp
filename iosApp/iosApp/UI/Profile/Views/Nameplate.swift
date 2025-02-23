@@ -10,13 +10,13 @@ import SwiftUI
 
 struct Nameplate: View {
     var body: some View {
-        VStack(spacing: 24) {
-            Image(.avatar)
-                .resizable()
-                .scaledToFit()
-                .frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/)
-                .clipShape(Circle())
+        VStack(spacing: 36) {
             VStack(spacing: 16) {
+                Image(.avatar)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/)
+                    .clipShape(Circle())
                 Text("asmz")
                     .font(.title3)
                     .bold()
