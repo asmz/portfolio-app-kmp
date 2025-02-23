@@ -6,23 +6,24 @@
 //  Copyright © 2025 orgName. All rights reserved.
 //
 
+import Shared
 import SwiftUI
 
 struct AccountItem: View {
-    let name: String
-    let onPress: () -> Void = {
-        print("onPress!!!!")
-    }
+    @Environment(\.openURL) private var openURL
+    let account: Account
 
     var body: some View {
-        Button(action: onPress) {
+        Button(action: {
+            openURL(URL(string: account.url)!)
+        }) {
             HStack {
                 HStack(spacing: 16) {
-                    Image(.twitter)
+                    Image("\(account.service)")
                         .resizable()
                         .frame(width: 32, height: 32)
                         .scaledToFit()
-                    Text(name).foregroundColor(Color(.text))
+                    Text(account.name).foregroundColor(Color(.text))
                 }
                 Image(systemName: "arrow.up.forward.app")
                     .foregroundColor(Color(.subText))
@@ -38,5 +39,5 @@ struct AccountItem: View {
 }
 
 #Preview {
-    AccountItem(name: "twitter")
+    AccountItem(account: Account(service: "twitter", name: "_asmz", url: "https://x.com/_asmz"))
 }

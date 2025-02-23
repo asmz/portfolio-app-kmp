@@ -6,15 +6,16 @@
 //  Copyright © 2025 orgName. All rights reserved.
 //
 
+import Shared
 import SwiftUI
 
 struct AccountList: View {
-    let data = ["a", "b", "c", "b", "c", "b", "c", "b", "c"]
+    let accounts = Account.companion.getAccountList()
 
     var body: some View {
         VStack {
-            ForEach(data, id: \.self) { text in
-                AccountItem(name: text)
+            ForEach(accounts, id: \.self) { account in
+                AccountItem(account: account)
             }
             .padding(.horizontal, 32)
             .padding(.vertical, 4)
