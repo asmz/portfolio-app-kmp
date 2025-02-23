@@ -6,8 +6,8 @@
 //  Copyright © 2025 orgName. All rights reserved.
 //
 
-import SwiftUI
 import Shared
+import SwiftUI
 
 struct BaseTabView: View {
     @State var selection: TabType = .profile
@@ -25,7 +25,7 @@ struct BaseTabView: View {
             .tag(TabType.blog)
 
             SlideView().body.tabItem {
-                Label("Slide", systemImage: "videoprojector")
+                Label("Slide", systemImage: "rectangle.inset.filled.and.person.filled")
             }
             .tag(TabType.slide)
         }
