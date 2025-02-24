@@ -14,17 +14,17 @@ struct BaseTabView: View {
 
     var body: some View {
         TabView {
-            ProfileView().body.tabItem {
+            ProfileView().tabItem {
                 Label("Profile", systemImage: "person.fill")
             }
             .tag(TabType.profile)
 
-            BlogView().body.tabItem {
+            BlogView().tabItem {
                 Label("Blog", systemImage: "square.and.pencil")
             }
             .tag(TabType.blog)
 
-            SlideView().body.tabItem {
+            SlideView().tabItem {
                 Label("Slide", systemImage: "rectangle.inset.filled.and.person.filled")
             }
             .tag(TabType.slide)

@@ -13,6 +13,10 @@
 		6C553A1C2D6AF11C0065F8CA /* Nameplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C553A1B2D6AF11C0065F8CA /* Nameplate.swift */; };
 		6C553A1E2D6AF3BB0065F8CA /* AccountList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C553A1D2D6AF3BB0065F8CA /* AccountList.swift */; };
 		6C553A202D6AF4D50065F8CA /* AccountItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C553A1F2D6AF4D50065F8CA /* AccountItem.swift */; };
+		6C553A282D6C9DFB0065F8CA /* PostList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C553A272D6C9DFB0065F8CA /* PostList.swift */; };
+		6C553A2A2D6C9E280065F8CA /* PostListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C553A292D6C9E280065F8CA /* PostListViewModel.swift */; };
+		6C553A2C2D6C9E8F0065F8CA /* TagType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C553A2B2D6C9E8F0065F8CA /* TagType.swift */; };
+		6C553A2E2D6CA4830065F8CA /* PostItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C553A2D2D6CA4820065F8CA /* PostItem.swift */; };
 		6CA444A02D6A21D5009491B3 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CA4449F2D6A21D5009491B3 /* ProfileView.swift */; };
 		6CA444A22D6A2219009491B3 /* BaseTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CA444A12D6A2219009491B3 /* BaseTabView.swift */; };
 		6CA444A42D6A227F009491B3 /* BlogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CA444A32D6A227F009491B3 /* BlogView.swift */; };
@@ -27,6 +31,10 @@
 		6C553A1B2D6AF11C0065F8CA /* Nameplate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nameplate.swift; sourceTree = "<group>"; };
 		6C553A1D2D6AF3BB0065F8CA /* AccountList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountList.swift; sourceTree = "<group>"; };
 		6C553A1F2D6AF4D50065F8CA /* AccountItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountItem.swift; sourceTree = "<group>"; };
+		6C553A272D6C9DFB0065F8CA /* PostList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostList.swift; sourceTree = "<group>"; };
+		6C553A292D6C9E280065F8CA /* PostListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostListViewModel.swift; sourceTree = "<group>"; };
+		6C553A2B2D6C9E8F0065F8CA /* TagType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagType.swift; sourceTree = "<group>"; };
+		6C553A2D2D6CA4820065F8CA /* PostItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostItem.swift; sourceTree = "<group>"; };
 		6CA4449F2D6A21D5009491B3 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		6CA444A12D6A2219009491B3 /* BaseTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTabView.swift; sourceTree = "<group>"; };
 		6CA444A32D6A227F009491B3 /* BlogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlogView.swift; sourceTree = "<group>"; };
@@ -73,9 +81,28 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		6C553A232D6C9D880065F8CA /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				6C553A242D6C9DBF0065F8CA /* Post */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		6C553A242D6C9DBF0065F8CA /* Post */ = {
+			isa = PBXGroup;
+			children = (
+				6C553A272D6C9DFB0065F8CA /* PostList.swift */,
+				6C553A292D6C9E280065F8CA /* PostListViewModel.swift */,
+				6C553A2D2D6CA4820065F8CA /* PostItem.swift */,
+			);
+			path = Post;
+			sourceTree = "<group>";
+		};
 		6CA4449B2D6A218D009491B3 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				6C553A232D6C9D880065F8CA /* Common */,
 				6CA4449C2D6A21A8009491B3 /* Profile */,
 				6CA4449D2D6A21AF009491B3 /* Blog */,
 				6CA4449E2D6A21BE009491B3 /* Slide */,
@@ -113,6 +140,7 @@
 			isa = PBXGroup;
 			children = (
 				6CA444A82D6A23DC009491B3 /* TabType.swift */,
+				6C553A2B2D6C9E8F0065F8CA /* TagType.swift */,
 			);
 			path = Types;
 			sourceTree = "<group>";
@@ -255,11 +283,15 @@
 			files = (
 				6CA444A62D6A2287009491B3 /* SlideView.swift in Sources */,
 				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,
+				6C553A282D6C9DFB0065F8CA /* PostList.swift in Sources */,
+				6C553A2C2D6C9E8F0065F8CA /* TagType.swift in Sources */,
 				6CA444A22D6A2219009491B3 /* BaseTabView.swift in Sources */,
 				6C553A1C2D6AF11C0065F8CA /* Nameplate.swift in Sources */,
 				6CA444A42D6A227F009491B3 /* BlogView.swift in Sources */,
 				6C553A1E2D6AF3BB0065F8CA /* AccountList.swift in Sources */,
+				6C553A2A2D6C9E280065F8CA /* PostListViewModel.swift in Sources */,
 				6CA444A02D6A21D5009491B3 /* ProfileView.swift in Sources */,
+				6C553A2E2D6CA4830065F8CA /* PostItem.swift in Sources */,
 				6CA444A92D6A23DC009491B3 /* TabType.swift in Sources */,
 				6C553A202D6AF4D50065F8CA /* AccountItem.swift in Sources */,
 			);

@@ -45,6 +45,9 @@ kotlin {
             implementation(libs.androidx.activity.compose)
             implementation(libs.androidx.navigation.compose)
             implementation(compose.materialIconsExtended)
+            implementation(libs.lifecycle.runtime.compose)
+            implementation(libs.androidx.lifecycle.viewmodel.ktx)
+            implementation(libs.androidx.lifecycle.viewmodel.compose)
         }
         commonMain.dependencies {
             implementation(compose.runtime)
