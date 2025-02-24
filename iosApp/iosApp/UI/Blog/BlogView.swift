@@ -6,11 +6,16 @@
 //  Copyright © 2025 orgName. All rights reserved.
 //
 
+import Shared
 import SwiftUI
 
 struct BlogView: View {
+    let onPress: ((_ post: Post) -> Void)? = { post in
+        print("============ from BlogView: \(post)")
+    }
+
     var body: some View {
-        Text("This is BlogView")
+        PostList(viewModel: PostListViewModel(tag: .blog), onPress: onPress)
     }
 }
 

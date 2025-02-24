@@ -1,9 +1,18 @@
 package beer.asmz.portfolio.kmp.ui.blog
 
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import beer.asmz.portfolio.kmp.model.Post
+import beer.asmz.portfolio.kmp.type.TagType
+import beer.asmz.portfolio.kmp.ui.common.post.PostList
+import beer.asmz.portfolio.kmp.ui.common.post.PostListViewModel
 
 @Composable
 fun BlogView() {
-    Text("This is BlogView")
+    val onPress: ((post: Post) -> Unit) = { post ->
+        println("~~~~~~~~~~~~~~ from BlogView: $post")
+    }
+    PostList(
+        viewModel = PostListViewModel(tag = TagType.Blog),
+        onPress = onPress
+    )
 }
