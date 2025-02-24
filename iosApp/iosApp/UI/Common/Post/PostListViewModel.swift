@@ -11,7 +11,7 @@ import Shared
 
 @MainActor
 class PostListViewModel: ObservableObject {
-    private let tag: TagType
+    private let tag: PostTag
 
     @Published var posts: [Post] = []
     @Published var totalPosts: Int32 = 0
@@ -19,7 +19,7 @@ class PostListViewModel: ObservableObject {
 
     private let LIMIT = 20
 
-    init(tag: TagType) {
+    init(tag: PostTag) {
         self.tag = tag
     }
 
