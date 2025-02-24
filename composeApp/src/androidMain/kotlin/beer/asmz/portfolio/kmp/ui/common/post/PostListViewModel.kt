@@ -1,18 +1,16 @@
 package beer.asmz.portfolio.kmp.ui.common.post
 
-import androidx.compose.ui.text.toLowerCase
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import beer.asmz.portfolio.kmp.model.Post
 import beer.asmz.portfolio.kmp.repository.ThumblrRepository
-import beer.asmz.portfolio.kmp.type.TagType
+import beer.asmz.portfolio.kmp.type.PostTag
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import java.util.Locale
 
-class PostListViewModel(private val tag: TagType) : ViewModel() {
+class PostListViewModel(private val tag: PostTag) : ViewModel() {
     private val repository = ThumblrRepository()
 
     private val _isLoading = MutableStateFlow(false)

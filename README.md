@@ -1,24 +1,18 @@
-This is a Kotlin Multiplatform project targeting Android, iOS, Web.
+# portfolio-app-kmp
 
-* `/composeApp` is for code that will be shared across your Compose Multiplatform applications.
-  It contains several subfolders:
-  - `commonMain` is for code that’s common for all targets.
-  - Other folders are for Kotlin code that will be compiled for only the platform indicated in the folder name.
-    For example, if you want to use Apple’s CoreCrypto for the iOS part of your Kotlin app,
-    `iosMain` would be the right folder for such calls.
+This app is like a name card, powered by Kotlin Multiplatform (with Jetpack Compose and SwiftUI as UI frameworks).
 
-* `/iosApp` contains iOS applications. Even if you’re sharing your UI with Compose Multiplatform, 
-  you need this entry point for your iOS app. This is also where you should add SwiftUI code for your project.
+## Supported Platforms
 
-* `/shared` is for the code that will be shared between all targets in the project.
-  The most important subfolder is `commonMain`. If preferred, you can add code to the platform-specific folders here too.
+- iOS
+- Android
 
+## Requirements
 
-Learn more about [Kotlin Multiplatform](https://www.jetbrains.com/help/kotlin-multiplatform-dev/get-started.html),
-[Compose Multiplatform](https://github.com/JetBrains/compose-multiplatform/#compose-multiplatform),
-[Kotlin/Wasm](https://kotl.in/wasm/)…
+- Android Ladybug Feature Drop or later
+- Java 17 or later
+- Xcode 15.2 or later
 
-We would appreciate your feedback on Compose/Web and Kotlin/Wasm in the public Slack channel [#compose-web](https://slack-chats.kotlinlang.org/c/compose-web).
-If you face any issues, please report them on [GitHub](https://github.com/JetBrains/compose-multiplatform/issues).
+## Attention
 
-You can open the web application by running the `:composeApp:wasmJsBrowserDevelopmentRun` Gradle task.
+This app uses the Thumblr API. The API has rate limits, and if exceeded, it will be unavailable for a certain period of time, so please avoid making a large number of requests in a short period of time.
