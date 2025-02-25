@@ -14,11 +14,40 @@ struct PostList: View {
     var onPress: ((_ post: Post) -> Void)? = nil
 
     var body: some View {
-        List(viewModel.posts, id: \.self) { post in
-            PostItem(post: post, onPress: onPress)
+        List {
+            ForEach(viewModel.posts, id: \.self) { post in
+                PostItem(post: post, onPress: onPress)
+                    .listRowSeparator(.hidden)
+                    .task {
+                        if viewModel.posts.last == post {
+                            print("======= last")
+                            await viewModel.fetchPosts()
+                        }
+                    }
+            }
+            HStack(alignment: .center) {
+                if viewModel.isLoading && !viewModel.isRefreshing {
+                    ProgressView()
+                        .progressViewStyle(.circular)
+                        .tint(Color(.accent))
+                        .scaleEffect(x: 1.2, y: 1.2, anchor: .center)
+                        .padding(.vertical, 24)
+                }
+            }
+            .frame(maxWidth: .infinity)
+            .listRowSeparator(.hidden)
+        }
+        .listStyle(.plain)
+        .refreshable {
+            await viewModel.refresh()
         }
         .task {
-            await viewModel.fetchPosts()
+            if viewModel.posts.isEmpty {
+                await viewModel.fetchPosts()
+            }
+        }
+        .onAppear {
+            UIRefreshControl.appearance().tintColor = UIColor(Color(.accent))
         }
     }
 }

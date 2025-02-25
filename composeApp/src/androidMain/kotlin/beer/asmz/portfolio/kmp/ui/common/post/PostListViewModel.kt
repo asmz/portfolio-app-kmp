@@ -11,6 +11,10 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 class PostListViewModel(private val tag: PostTag) : ViewModel() {
+    companion object {
+        const val LIMIT = 20
+    }
+
     private val repository = ThumblrRepository()
     private var offset = 0
     private var hasNext = true
@@ -23,10 +27,6 @@ class PostListViewModel(private val tag: PostTag) : ViewModel() {
 
     private val _posts = MutableStateFlow<List<Post>>(emptyList())
     val posts: StateFlow<List<Post>> get() = _posts
-
-    companion object {
-        const val LIMIT = 20
-    }
 
     fun fetchPosts() {
         if (!hasNext || _isLoading.value) return
