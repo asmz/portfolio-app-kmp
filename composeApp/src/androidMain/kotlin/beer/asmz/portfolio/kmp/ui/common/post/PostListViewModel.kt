@@ -11,35 +11,49 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 class PostListViewModel(private val tag: PostTag) : ViewModel() {
-    private val repository = ThumblrRepository()
-
-    private val _isLoading = MutableStateFlow(false)
-    val isLoading: StateFlow<Boolean> get() = _isLoading
-
-    private val _posts = MutableStateFlow<List<Post>>(emptyList())
-    val posts: StateFlow<List<Post>> get() = _posts
-
     companion object {
         const val LIMIT = 20
     }
 
-    init {
-        fetchPosts()
-    }
+    private val repository = ThumblrRepository()
+    private var offset = 0
+    private var hasNext = true
 
-    private fun fetchPosts() {
+    private val _isLoading = MutableStateFlow(false)
+    val isLoading: StateFlow<Boolean> get() = _isLoading
+
+    private val _isRefreshing = MutableStateFlow(false)
+    val isRefreshing: StateFlow<Boolean> get() = _isRefreshing
+
+    private val _posts = MutableStateFlow<List<Post>>(emptyList())
+    val posts: StateFlow<List<Post>> get() = _posts
+
+    fun fetchPosts() {
+        if (!hasNext || _isLoading.value) return
         _isLoading.update { true }
 
         viewModelScope.launch {
             val params = mapOf(
-                "offset" to "0",
+                "offset" to "$offset",
                 "limit" to "$LIMIT",
                 "tag" to tag.name.lowercase()
             )
 
             val response = repository.getPosts(params)
-            _posts.update { response.posts }
+            _posts.update { it + response.posts }
+            offset += LIMIT
+            hasNext = response.totalPosts > _posts.value.count()
             _isLoading.update { false }
+            _isRefreshing.update { false }
         }
+    }
+
+    fun refresh() {
+        _isRefreshing.update { true }
+        _posts.update { emptyList() }
+        offset = 0
+        hasNext = true
+
+        fetchPosts()
     }
 }

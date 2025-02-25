@@ -14,33 +14,50 @@ class PostListViewModel: ObservableObject {
     private let tag: PostTag
 
     @Published var posts: [Post] = []
-    @Published var totalPosts: Int32 = 0
     @Published var isLoading: Bool = false
+    @Published var isRefreshing: Bool = false
 
     private let LIMIT = 20
+    private var offset = 0
+    private var hasNext = true
 
     init(tag: PostTag) {
         self.tag = tag
     }
 
     func fetchPosts() async {
+        if !hasNext || isLoading { return }
+
         let repository = ThumblrRepository()
 
         let params = [
-            "offset": "0",
+            "offset": "\(offset)",
             "limit": "\(LIMIT)",
             "tag": "\(tag)",
         ]
 
         do {
-            self.isLoading = true
-            let result = try await repository.getPosts(params: params)
+            isLoading = true
+            let response = try await repository.getPosts(params: params)
 
-            self.posts = result.posts
-            self.totalPosts = result.totalPosts
-            self.isLoading = false
+            posts.append(contentsOf: response.posts)
+            offset += LIMIT
+            hasNext = response.totalPosts > posts.count
+            isLoading = false
         } catch {
             print(error)
         }
+    }
+
+    func refresh() async {
+        isRefreshing = true
+
+        posts = []
+        offset = 0
+        hasNext = true
+
+        await fetchPosts()
+
+        isRefreshing = false
     }
 }

@@ -27,7 +27,7 @@ fun PostItem(post: Post, onPress: ((post: Post) -> Unit)? = null) {
             .background(BlurGrayColor, shape = RoundedCornerShape(15.dp))
             .clip(RoundedCornerShape(15.dp))
             .fillMaxWidth()
-            .height(52.dp)
+            .height(152.dp)
             .clickable(onClick = {
                 onPress?.let { it(post) }
             })
