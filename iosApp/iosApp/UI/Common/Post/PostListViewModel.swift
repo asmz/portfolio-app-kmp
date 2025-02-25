@@ -16,6 +16,7 @@ class PostListViewModel: ObservableObject {
     @Published var posts: [Post] = []
     @Published var isLoading: Bool = false
     @Published var isRefreshing: Bool = false
+    @Published var error: Error? = nil
 
     private let LIMIT = 20
     private var offset = 0
@@ -37,15 +38,18 @@ class PostListViewModel: ObservableObject {
         ]
 
         do {
+            defer {
+                isLoading = false
+            }
             isLoading = true
             let response = try await repository.getPosts(params: params)
 
             posts.append(contentsOf: response.posts)
             offset += LIMIT
             hasNext = response.totalPosts > posts.count
-            isLoading = false
         } catch {
-            print(error)
+            self.error = error
+            hasNext = false
         }
     }
 
