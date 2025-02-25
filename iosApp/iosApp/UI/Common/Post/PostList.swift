@@ -11,6 +11,7 @@ import SwiftUI
 
 struct PostList: View {
     @ObservedObject var viewModel: PostListViewModel
+
     var onPress: ((_ post: Post) -> Void)? = nil
 
     var body: some View {
@@ -20,7 +21,6 @@ struct PostList: View {
                     .listRowSeparator(.hidden)
                     .task {
                         if viewModel.posts.last == post {
-                            print("======= last")
                             await viewModel.fetchPosts()
                         }
                     }
@@ -48,6 +48,9 @@ struct PostList: View {
         }
         .onAppear {
             UIRefreshControl.appearance().tintColor = UIColor(Color(.accent))
+        }
+        .apiErrorAlert(error: viewModel.error) {
+            viewModel.error = nil
         }
     }
 }

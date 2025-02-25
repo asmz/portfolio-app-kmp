@@ -20,6 +20,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import beer.asmz.portfolio.kmp.constant.AccentColor
 import beer.asmz.portfolio.kmp.model.Post
+import beer.asmz.portfolio.kmp.ui.common.error.ApiErrorAlert
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -30,6 +31,7 @@ fun PostList(
     val posts by viewModel.posts.collectAsStateWithLifecycle()
     val isLoading by viewModel.isLoading.collectAsStateWithLifecycle()
     val isRefreshing by viewModel.isRefreshing.collectAsStateWithLifecycle()
+    val error by viewModel.error.collectAsStateWithLifecycle()
 
     val pullRefreshState = rememberPullRefreshState(
         refreshing = isRefreshing,
@@ -68,5 +70,11 @@ fun PostList(
                 .align(Alignment.TopCenter),
             contentColor = AccentColor,
         )
+    }
+
+    if (error != null) {
+        ApiErrorAlert(error!!) {
+            viewModel.hideErrorAlert()
+        }
     }
 }

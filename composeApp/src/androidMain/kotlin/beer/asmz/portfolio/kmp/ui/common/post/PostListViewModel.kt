@@ -28,8 +28,12 @@ class PostListViewModel(private val tag: PostTag) : ViewModel() {
     private val _posts = MutableStateFlow<List<Post>>(emptyList())
     val posts: StateFlow<List<Post>> get() = _posts
 
+    private val _error = MutableStateFlow<Throwable?>(null)
+    val error: StateFlow<Throwable?> get() = _error
+
     fun fetchPosts() {
         if (!hasNext || _isLoading.value) return
+        _error.update { null }
         _isLoading.update { true }
 
         viewModelScope.launch {
@@ -39,12 +43,18 @@ class PostListViewModel(private val tag: PostTag) : ViewModel() {
                 "tag" to tag.name.lowercase()
             )
 
-            val response = repository.getPosts(params)
-            _posts.update { it + response.posts }
-            offset += LIMIT
-            hasNext = response.totalPosts > _posts.value.count()
-            _isLoading.update { false }
-            _isRefreshing.update { false }
+            try {
+                val response = repository.getPosts(params)
+                _posts.update { it + response.posts }
+                offset += LIMIT
+                hasNext = response.totalPosts > _posts.value.count()
+            } catch (throwable: Throwable) {
+                _error.update { throwable }
+                hasNext = false
+            } finally {
+                _isLoading.update { false }
+                _isRefreshing.update { false }
+            }
         }
     }
 
@@ -55,5 +65,9 @@ class PostListViewModel(private val tag: PostTag) : ViewModel() {
         hasNext = true
 
         fetchPosts()
+    }
+
+    fun hideErrorAlert() {
+        _error.update { null }
     }
 }
