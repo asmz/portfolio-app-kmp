@@ -83,6 +83,7 @@ struct PostItem: View {
                             .padding(.horizontal, 8)
                             .foregroundColor(Color(.text))
                             .background(Color(.lightGray))
+                            .cornerRadius(5)
                     }
                 }
                 Divider()

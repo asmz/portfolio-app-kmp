@@ -25,7 +25,6 @@ import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import beer.asmz.portfolio.kmp.R
 import beer.asmz.portfolio.kmp.constant.BlurGrayColor
 import beer.asmz.portfolio.kmp.constant.SubTextColor
 import beer.asmz.portfolio.kmp.constant.TextColor
