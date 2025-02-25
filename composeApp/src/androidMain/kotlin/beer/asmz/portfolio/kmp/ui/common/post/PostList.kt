@@ -38,7 +38,10 @@ fun PostList(
         onRefresh = { viewModel.refresh() }
     )
     Box(modifier = Modifier.pullRefresh(pullRefreshState)) {
-        LazyColumn {
+        LazyColumn(
+            modifier = Modifier
+                .padding(horizontal = 24.dp)
+        ) {
             items(posts, key = { it.idString }) { post ->
                 PostItem(post = post, onPress = onPress)
             }
