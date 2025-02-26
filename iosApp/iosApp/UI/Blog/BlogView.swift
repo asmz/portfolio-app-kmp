@@ -15,7 +15,10 @@ struct BlogView: View {
     }
 
     var body: some View {
-        PostList(viewModel: PostListViewModel(tag: .blog), onPress: onPress)
+        NavigationStack {
+            PostList(viewModel: PostListViewModel(tag: .blog), onPress: onPress)
+                .navigationTitle("Blog")
+        }
     }
 }
 
