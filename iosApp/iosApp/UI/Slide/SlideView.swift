@@ -15,7 +15,10 @@ struct SlideView: View {
     }
 
     var body: some View {
-        PostList(viewModel: PostListViewModel(tag: .slide), onPress: onPress)
+        NavigationStack {
+            PostList(viewModel: PostListViewModel(tag: .slide), onPress: onPress)
+                .navigationTitle("Slide")
+        }
     }
 }
 
