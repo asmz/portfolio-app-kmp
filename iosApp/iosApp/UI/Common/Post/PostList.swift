@@ -25,6 +25,7 @@ struct PostList: View {
                         }
                     }
             }
+            .listRowBackground(Color.clear)
             HStack(alignment: .center) {
                 if viewModel.isLoading && !viewModel.isRefreshing {
                     ProgressView()
@@ -34,10 +35,12 @@ struct PostList: View {
                         .padding(.vertical, 24)
                 }
             }
+            .listRowBackground(Color.clear)
             .frame(maxWidth: .infinity)
             .listRowSeparator(.hidden)
         }
         .listStyle(.plain)
+        .background(Image(.beer))
         .refreshable {
             await viewModel.refresh()
         }

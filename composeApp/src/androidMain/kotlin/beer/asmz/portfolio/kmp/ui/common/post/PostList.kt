@@ -1,5 +1,6 @@
 package beer.asmz.portfolio.kmp.ui.common.post
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -16,6 +17,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import beer.asmz.portfolio.kmp.constant.AccentColor
@@ -37,10 +39,14 @@ fun PostList(
         refreshing = isRefreshing,
         onRefresh = { viewModel.refresh() }
     )
-    Box(modifier = Modifier.pullRefresh(pullRefreshState)) {
+    Box(
+        modifier = Modifier
+            .pullRefresh(pullRefreshState)
+            .background(Color.Transparent)
+    ) {
         LazyColumn(
             modifier = Modifier
-                .padding(horizontal = 24.dp)
+                .padding(horizontal = 24.dp),
         ) {
             items(posts, key = { it.idString }) { post ->
                 PostItem(post = post, onPress = onPress)

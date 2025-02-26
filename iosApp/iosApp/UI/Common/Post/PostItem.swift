@@ -96,6 +96,7 @@ struct PostItem: View {
             .padding(.vertical, 32)
             .background(Color(.blurGray))
             .cornerRadius(15)
+            .background(Color.clear)
         }
     }
 }
