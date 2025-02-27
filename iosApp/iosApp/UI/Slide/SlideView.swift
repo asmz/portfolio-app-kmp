@@ -10,13 +10,9 @@ import Shared
 import SwiftUI
 
 struct SlideView: View {
-    let onPress: ((_ post: Post) -> Void)? = { post in
-        print("============ from Slide: \(post)")
-    }
-
     var body: some View {
         NavigationStack {
-            PostList(viewModel: PostListViewModel(tag: .slide), onPress: onPress)
+            PostList(viewModel: PostListViewModel(tag: .slide))
                 .navigationTitle("Slide")
         }
     }

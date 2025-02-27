@@ -36,6 +36,7 @@ struct PostItem: View {
     }
 
     private let formatter = DateFormatter()
+    @State private var safariOpenUrl: URL? = nil
 
     init(post: Post, onPress: ((_ post: Post) -> Void)? = nil) {
         self.post = post
@@ -46,7 +47,12 @@ struct PostItem: View {
 
     var body: some View {
         Button(action: {
-            onPress?(post)
+            if let onPress {
+                onPress(post)
+                return
+            }
+
+            safariOpenUrl = URL(string: content.url ?? "")
         }) {
             VStack(alignment: .leading) {
                 HStack {
@@ -97,6 +103,9 @@ struct PostItem: View {
             .background(Color(.blurGray))
             .cornerRadius(15)
             .background(Color.clear)
+        }
+        .openSafariView(url: safariOpenUrl) {
+            safariOpenUrl = nil
         }
     }
 }
