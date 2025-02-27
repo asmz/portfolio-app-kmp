@@ -12,6 +12,7 @@ androidx-lifecycle = "2.8.4"
 androidx-material = "1.12.0"
 androidx-navigation = "2.8.7"
 androidx-test-junit = "1.2.1"
+browser = "1.8.0"
 coilCompose = "3.1.0"
 compose-multiplatform = "1.7.0"
 junit = "4.13.2"
@@ -21,6 +22,7 @@ ktorVersion = "2.3.7"
 lifecycleViewmodelKtx = "2.8.7"
 
 [libraries]
+androidx-browser = { module = "androidx.browser:browser", version.ref = "browser" }
 androidx-lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "lifecycleViewmodelKtx" }
 androidx-lifecycle-viewmodel-ktx = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycleViewmodelKtx" }
 coil-compose = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coilCompose" }
