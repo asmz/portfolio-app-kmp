@@ -25,6 +25,7 @@ struct PostList: View {
                         }
                     }
             }
+            .buttonStyle(.borderless)
             .listRowBackground(Color.clear)
             HStack(alignment: .center) {
                 if viewModel.isLoading && !viewModel.isRefreshing {
