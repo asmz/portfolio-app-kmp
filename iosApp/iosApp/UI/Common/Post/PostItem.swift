@@ -11,7 +11,7 @@ import SwiftUI
 
 struct PostItem: View {
     let post: Post
-    let onPress: ((_ post: Post) -> Void)?
+    let onPressItem: ((_ post: Post) -> Void)?
 
     var content: PostContent {
         post.content[0]
@@ -36,17 +36,22 @@ struct PostItem: View {
     }
 
     private let formatter = DateFormatter()
+    @State private var safariOpenUrl: URL? = nil
 
-    init(post: Post, onPress: ((_ post: Post) -> Void)? = nil) {
+    init(post: Post, onPressItem: ((_ post: Post) -> Void)? = nil) {
         self.post = post
-        self.onPress = onPress
+        self.onPressItem = onPressItem
         formatter.dateFormat = "yyyy/MM/dd"
         formatter.locale = Locale(identifier: "ja_JP")
     }
 
     var body: some View {
         Button(action: {
-            onPress?(post)
+            if let onPressItem {
+                onPressItem(post)
+                return
+            }
+            safariOpenUrl = URL(string: content.url ?? "")
         }) {
             VStack(alignment: .leading) {
                 HStack {
@@ -97,6 +102,9 @@ struct PostItem: View {
             .background(Color(.blurGray))
             .cornerRadius(15)
             .background(Color.clear)
+        }
+        .openSafariView(url: safariOpenUrl) {
+            safariOpenUrl = nil
         }
     }
 }

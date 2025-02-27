@@ -18,6 +18,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -32,6 +33,7 @@ import beer.asmz.portfolio.kmp.model.Post
 import beer.asmz.portfolio.kmp.model.PostContent
 import beer.asmz.portfolio.kmp.model.PostContentPoster
 import beer.asmz.portfolio.kmp.ui.AppTheme
+import beer.asmz.portfolio.kmp.ui.common.chrome_tabs.launchCustomTabs
 import coil3.compose.AsyncImage
 import java.net.URL
 import java.time.Instant
@@ -41,7 +43,9 @@ import java.time.format.DateTimeFormatter
 
 
 @Composable
-fun PostItem(post: Post, onPress: ((post: Post) -> Unit)? = null) {
+fun PostItem(post: Post, onPressItem: ((post: Post) -> Unit)? = null) {
+    val context = LocalContext.current
+
     val content = remember { post.content[0] }
     val poster = remember { content.poster?.get(0) }
     val hostname = remember { URL(content.url).host }
@@ -59,7 +63,11 @@ fun PostItem(post: Post, onPress: ((post: Post) -> Unit)? = null) {
             .clip(RoundedCornerShape(15.dp))
             .fillMaxWidth()
             .clickable(onClick = {
-                onPress?.let { it(post) }
+                onPressItem?.let { onPress ->
+                    onPress(post)
+                } ?: run {
+                    context.launchCustomTabs(content.url)
+                }
             })
             .padding(horizontal = 16.dp, vertical = 32.dp)
     ) {

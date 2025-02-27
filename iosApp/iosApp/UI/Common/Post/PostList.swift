@@ -12,12 +12,12 @@ import SwiftUI
 struct PostList: View {
     @ObservedObject var viewModel: PostListViewModel
 
-    var onPress: ((_ post: Post) -> Void)? = nil
+    var onPressItem: ((_ post: Post) -> Void)? = nil
 
     var body: some View {
         List {
             ForEach(viewModel.posts, id: \.self) { post in
-                PostItem(post: post, onPress: onPress)
+                PostItem(post: post, onPressItem: onPressItem)
                     .listRowSeparator(.hidden)
                     .task {
                         if viewModel.posts.last == post {
@@ -25,6 +25,7 @@ struct PostList: View {
                         }
                     }
             }
+            .buttonStyle(.borderless)
             .listRowBackground(Color.clear)
             HStack(alignment: .center) {
                 if viewModel.isLoading && !viewModel.isRefreshing {

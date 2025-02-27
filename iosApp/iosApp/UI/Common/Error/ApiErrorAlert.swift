@@ -12,11 +12,15 @@ struct ApiErrorAlert: ViewModifier {
     let error: Error?
     let onDismiss: () -> Void
 
-    func body(content: Content) -> some View {
-        content.alert("Error", isPresented: Binding<Bool>(
+    private var isPresented: Binding<Bool> {
+        Binding(
             get: { error != nil },
             set: { _ in }
-        )) {
+        )
+    }
+
+    func body(content: Content) -> some View {
+        content.alert("Error", isPresented: isPresented) {
             Button("OK") {
                 onDismiss()
             }

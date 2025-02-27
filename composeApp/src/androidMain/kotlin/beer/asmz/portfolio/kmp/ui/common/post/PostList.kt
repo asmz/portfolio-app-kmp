@@ -28,7 +28,7 @@ import beer.asmz.portfolio.kmp.ui.common.error.ApiErrorAlert
 @Composable
 fun PostList(
     viewModel: PostListViewModel,
-    onPress: ((post: Post) -> Unit)? = null
+    onPressItem: ((post: Post) -> Unit)? = null
 ) {
     val posts by viewModel.posts.collectAsStateWithLifecycle()
     val isLoading by viewModel.isLoading.collectAsStateWithLifecycle()
@@ -49,7 +49,7 @@ fun PostList(
                 .padding(horizontal = 24.dp),
         ) {
             items(posts, key = { it.idString }) { post ->
-                PostItem(post = post, onPress = onPress)
+                PostItem(post = post, onPressItem = onPressItem)
             }
             item {
                 Box(

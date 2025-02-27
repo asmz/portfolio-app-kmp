@@ -33,8 +33,6 @@ struct BaseTabView: View {
     }
 }
 
-struct BaseTabView_Previews: PreviewProvider {
-    static var previews: some View {
-        BaseTabView()
-    }
+#Preview {
+    BaseTabView()
 }
