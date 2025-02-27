@@ -14,17 +14,12 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import beer.asmz.portfolio.kmp.R
 import beer.asmz.portfolio.kmp.constant.TextColor
-import beer.asmz.portfolio.kmp.model.Post
 import beer.asmz.portfolio.kmp.type.PostTag
 import beer.asmz.portfolio.kmp.ui.common.post.PostList
 import beer.asmz.portfolio.kmp.ui.common.post.PostListViewModel
 
 @Composable
 fun SlideView() {
-    val onPress: ((post: Post) -> Unit) = { post ->
-        println("~~~~~~~~~~~~~~ from SlideView: $post")
-    }
-
     Box(
         modifier = Modifier
             .paint(
@@ -53,8 +48,7 @@ fun SlideView() {
                 ),
         ) {
             PostList(
-                viewModel = PostListViewModel(tag = PostTag.Slide),
-                onPress = onPress
+                viewModel = PostListViewModel(tag = PostTag.Slide)
             )
         }
     }

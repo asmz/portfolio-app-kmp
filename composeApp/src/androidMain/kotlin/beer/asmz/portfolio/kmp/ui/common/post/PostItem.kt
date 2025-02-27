@@ -41,7 +41,7 @@ import java.time.format.DateTimeFormatter
 
 
 @Composable
-fun PostItem(post: Post, onPress: ((post: Post) -> Unit)? = null) {
+fun PostItem(post: Post, onPressItem: ((post: Post) -> Unit)? = null) {
     val content = remember { post.content[0] }
     val poster = remember { content.poster?.get(0) }
     val hostname = remember { URL(content.url).host }
@@ -59,7 +59,7 @@ fun PostItem(post: Post, onPress: ((post: Post) -> Unit)? = null) {
             .clip(RoundedCornerShape(15.dp))
             .fillMaxWidth()
             .clickable(onClick = {
-                onPress?.let { it(post) }
+                onPressItem?.let { it(post) }
             })
             .padding(horizontal = 16.dp, vertical = 32.dp)
     ) {

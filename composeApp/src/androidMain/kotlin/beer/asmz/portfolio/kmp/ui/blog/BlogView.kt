@@ -13,8 +13,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import beer.asmz.portfolio.kmp.R
-import beer.asmz.portfolio.kmp.constant.AccentColor
-import beer.asmz.portfolio.kmp.constant.LightGrayColor
 import beer.asmz.portfolio.kmp.constant.TextColor
 import beer.asmz.portfolio.kmp.model.Post
 import beer.asmz.portfolio.kmp.type.PostTag
@@ -23,10 +21,6 @@ import beer.asmz.portfolio.kmp.ui.common.post.PostListViewModel
 
 @Composable
 fun BlogView() {
-    val onPress: ((post: Post) -> Unit) = { post ->
-        println("~~~~~~~~~~~~~~ from BlogView: $post")
-    }
-
     Scaffold(
         topBar = {
             TopAppBar(
@@ -49,7 +43,6 @@ fun BlogView() {
             ) {
             PostList(
                 viewModel = PostListViewModel(tag = PostTag.Blog),
-                onPress = onPress
             )
         }
     }
