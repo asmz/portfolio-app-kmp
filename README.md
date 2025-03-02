@@ -1,5 +1,3 @@
-🚧Under construction🚧
-===
 # portfolio-app-kmp
 
 This app is like a name card, powered by Kotlin Multiplatform (with Jetpack Compose and SwiftUI as UI frameworks).
